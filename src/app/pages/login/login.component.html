@@ -1,0 +1,63 @@
+<div class="min-h-screen bg-teal-800 text-white flex flex-col p-6">
+
+  <div class="flex flex-col items-center flex-grow justify-center px-4">
+  <div class="mt-10">
+    <div class="bg-white text-teal-800 p-4 rounded-full">
+      <i class="fa-solid fa-briefcase-medical text-5xl"></i>
+    </div>
+  </div>
+
+    <h2 class="text-3xl font-bold mb-2 text-white">PrescriptoAI</h2>
+    <p class="text-md text-center mb-8 opacity-90 max-w-sm">
+      Login to your account
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full max-w-md space-y-4">
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="email" id="Email" formControlName="Email"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Email">
+        </div>
+        @if (loginForm.get('Email')?.errors && loginForm.get('Email')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (loginForm.get('Email')?.getError('required')) { <li>Email is required</li> }
+              @if (loginForm.get('Email')?.getError('email')) { <li>Please enter a valid email format like: <strong>name&#64;gmail.com</strong></li> }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="password" id="Password" formControlName="Password"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Password">
+        </div>
+        @if (loginForm.get('Password')?.errors && loginForm.get('Password')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (loginForm.get('Password')?.getError('required')) { <li>Password is required</li> }
+              @if (loginForm.get('Password')?.getError('minlength')) { <li>Password must be at least 6 characters</li> }
+              @if (loginForm.get('Password')?.getError('maxlength')) { <li>Password cannot exceed 20 characters</li> }
+              @if (loginForm.get('Password')?.getError('pattern')) { <li>Password contains invalid characters</li> }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid"
+        class="w-full bg-white text-teal-600 font-semibold py-3 rounded-lg shadow-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">
+        LOGIN
+      </button>
+    </form>
+
+    <p class="mt-8 text-sm opacity-90">
+      Don't have an account? <a routerLink="/register" class="font-semibold underline">Register</a>
+    </p>
+  </div>
+</div>

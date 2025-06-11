@@ -1,0 +1,102 @@
+<div class="min-h-screen bg-teal-700 text-white flex flex-col p-6">
+  <div class="flex items-center mb-8">
+    <button class="text-white focus:outline-none" aria-label="Go back">
+      <svg routerLink="/login" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+    </button>
+    <h1 class="text-xl font-semibold ml-4">Create Account</h1>
+
+  </div>
+
+  <div class="flex flex-col items-center flex-grow justify-center px-4">
+  <div class="mt-10">
+    <div class="bg-white text-teal-800 p-4 rounded-full">
+      <i class="fa-solid fa-briefcase-medical text-5xl"></i>
+    </div>
+  </div>
+
+    <h2 class="text-2xl font-bold mb-2 text-white">Join PrescriptoAI</h2>
+    <p class="text-md text-center mb-8 opacity-90 max-w-sm">
+      Create your account to access AI-powered prescription analysis
+    </p>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="w-full max-w-md space-y-4">
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="text" id="FullName" formControlName="FullName"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Full Name">
+        </div>
+        @if (signupForm.get('FullName')?.errors && signupForm.get('FullName')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (signupForm.get('FullName')?.getError('required')) { <li>Full name is required</li> }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="email" id="Email" formControlName="Email"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Email">
+        </div>
+        @if (signupForm.get('Email')?.errors && signupForm.get('Email')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (signupForm.get('Email')?.getError('required')) { <li>Email is required</li> }
+              @if (signupForm.get('Email')?.getError('email')) { <li>Please enter a valid email format like: <strong>name&#64;gmail.com</strong></li> }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="password" id="Password" formControlName="Password"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Password">
+        </div>
+        @if (signupForm.get('Password')?.errors && signupForm.get('Password')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (signupForm.get('Password')?.getError('required')) { <li>Password is required</li> }
+              @if (signupForm.get('Password')?.getError('minlength')) { <li>Password must be at least 6 characters</li> }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <input type="password" id="ConfirmPassword" formControlName="ConfirmPassword"
+            class="pl-10 pr-4 py-3 w-full rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Confirm Password">
+        </div>
+        @if (signupForm.get('ConfirmPassword')?.errors && signupForm.get('ConfirmPassword')?.touched) {
+          <div class="text-left text-sm text-red-300 bg-red-800 bg-opacity-70 p-2 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (signupForm.get('ConfirmPassword')?.getError('required')) { <li>Confirm Password is required</li> }
+            </ul>
+          </div>
+        }
+        </div>
+
+      <button type="submit" [disabled]="signupForm.invalid"
+        class="w-full bg-white text-teal-700 font-semibold py-3 rounded-lg shadow-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-75 disabled:opacity-50 disabled:cursor-not-allowed">
+        CREATE ACCOUNT
+      </button>
+    </form>
+
+    <p class="mt-8 text-sm opacity-90">
+      Already have an account? <a routerLink="/login" class="font-semibold underline">Login</a>
+    </p>
+  </div>
+</div>

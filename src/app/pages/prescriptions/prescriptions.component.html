@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
+  <div *ngIf="prescriptions.length === 0; else dataContent" class="text-center">
+    <div class="flex justify-center mb-6">
+      <div class="w-20 h-20 text-5xl opacity-25 dark:bg-gray-700 flex items-center justify-center rounded-full">
+        <i class="fa-solid fa-square-plus"></i>
+      </div>
+    </div>
+
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+      No prescriptions analyzed yet!
+    </p>
+
+    <button routerLinkActive="router-link-active" class="bg-teal-600 text-white px-6 py-3 rounded-md hover:bg-teal-700 transition flex items-center justify-center mx-auto">
+      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+          clip-rule="evenodd" />
+      </svg>
+      Analyze New Prescription
+    </button>
+  </div>
+
+  <ng-template #dataContent>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl mt-8">
+      <div *ngFor="let pres of prescriptions" class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+        <img [src]="pres.imageUrl" alt="Prescription Image" class="w-full h-48 object-cover rounded mb-4">
+
+        <p class="text-gray-800 dark:text-gray-200 font-semibold mb-2">
+          Uploaded At: {{ pres.uploadedAt | date:'medium' }}
+        </p>
+
+        <p class="text-gray-600 dark:text-gray-400 mb-4" *ngIf="pres.analysisResult">
+          Analysis: {{ pres.analysisResult }}
+        </p>
+
+        <p class="text-gray-500 dark:text-gray-400 italic" *ngIf="!pres.analysisResult">
+          No analysis result yet.
+        </p>
+
+        <button (click)="deletePrescription(pres.id)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition w-full">
+          Delete
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>
