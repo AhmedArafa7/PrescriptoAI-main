@@ -1,9 +1,11 @@
 import { AuthService } from './../../core/services/auth/auth.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
+  imports: [RouterLink],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
@@ -12,11 +14,5 @@ export class NavbarComponent {
 
 
 
-  logout(): void {
-    this.authService.logout();
-  }
 
-  goBack(): void {
-    this.location.back();
-  }
 }

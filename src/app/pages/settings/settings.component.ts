@@ -9,7 +9,7 @@ import { ThemeService } from '../.././core/services/theme/theme.service';
 })
 export class SettingsComponent {
   constructor(private themeService: ThemeService) {}
- 
+  isDarkMode: boolean = false;
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
