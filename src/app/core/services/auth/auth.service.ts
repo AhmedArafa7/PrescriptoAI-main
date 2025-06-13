@@ -12,10 +12,8 @@ import { catchError, throwError } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private httpClient:HttpClient,private toastr: ToastrService,@Inject(PLATFORM_ID) private platformId: any) { }
+  constructor(private httpClient: HttpClient,private toastr: ToastrService,@Inject(PLATFORM_ID) private platformId: any,private readonly router: Router,private readonly toastrService: ToastrService) { }
 
-  private readonly router = inject(Router);
-  private readonly toastrService = inject(ToastrService);
   private apiUrl = `${environment.baseUrl}/auth`;
 
 
@@ -57,18 +55,6 @@ export class AuthService {
 
   }
 
-  setEmailVerifay(data:object):Observable<any> {
-    return this.httpClient.post(`${this.apiUrl}/forgotPasswords`, data);
-  }
-
-  setCodeVerifay(data:object):Observable<any> {
-    return this.httpClient.post(`${this.apiUrl}/verifyResetCode`, data);
-  }
-
-  setResetPass(data:object):Observable<any> {
-    return this.httpClient.put(`${this.apiUrl}/resetPassword`, data);
-  }
-
   setToken(token: string): void {
     if (isPlatformBrowser(this.platformId)) {
     localStorage.setItem('token', token);
@@ -80,10 +66,6 @@ export class AuthService {
     return localStorage.getItem('token');
   }
   return null;
-  }
-
-  isLoggedIn(): boolean {
-    return !!this.getToken();
   }
 }
 

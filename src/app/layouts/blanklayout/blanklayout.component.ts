@@ -6,7 +6,6 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 
 @Component({
   selector: 'app-blanklayer',
-  standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './blanklayout.component.html',
   styleUrls: ['./blanklayout.component.scss']

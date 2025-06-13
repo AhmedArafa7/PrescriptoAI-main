@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr'; // لإظهار الإشعارات
 @Component({
   selector: 'app-check',
   templateUrl: './check.component.html',
-  standalone: true,
   imports: [ReactiveFormsModule, CommonModule], // CommonModule ضروري لـ *ngIf أو @if
 })
 export class CheckComponent implements OnInit {

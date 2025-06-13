@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { AuthlayoutComponent } from './layouts/authlayout/authlayout.component';
+import { AuthlayoutComponent } from './layouts/auth/authlayout/authlayout.component';
 import { BlanklayoutComponent } from './layouts/blanklayout/blanklayout.component';
 
 export const routes: Routes = [
@@ -15,8 +15,8 @@ export const routes: Routes = [
         path: '', 
         component: AuthlayoutComponent, 
         children: [
-            { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
-            { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent) }
+            { path: 'login', loadComponent: () => import('./layouts/auth/login/login.component').then(m => m.LoginComponent) },
+            { path: 'register', loadComponent: () => import('./layouts/auth/register/register.component').then(m => m.RegisterComponent) }
         ]
     },
     {

@@ -1,4 +1,4 @@
-import { AuthService } from './../../core/services/auth/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -7,7 +7,6 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  standalone: true,
   imports: [ReactiveFormsModule, RouterLink], 
 })
 export class RegisterComponent implements OnInit {
