@@ -1,7 +1,6 @@
 import { AuthService } from '../../core/services/auth/auth.service';
 import { PrescriptionService } from '../../core/services/prescription/prescription.service';
 import { Component, inject } from '@angular/core';
-import { ImagesService } from '../../core/services/images/images.service';
 import { IPrescription } from '../../shared/interfaces/Iprescription';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -14,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   private readonly authService = inject(AuthService);
-  private readonly imagesService = inject(ImagesService);
   private readonly prescriptionService = inject(PrescriptionService);
   private readonly toastr = inject(ToastrService);
   images: IPrescription[] = [] as IPrescription[];
@@ -34,17 +32,6 @@ export class HomeComponent {
   detectMobileDevice(): boolean {
     const userAgent = navigator.userAgent.toLowerCase();
     return /android|iphone|ipad|ipod|windows phone/i.test(userAgent);
-  }
-
-  getPrescriptionsData(): void {
-    this.imagesService.getAllPriscriptions().subscribe({
-      next: (res) => {
-        this.images = res.data;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
   }
 
   onFileSelected(event: any): void {

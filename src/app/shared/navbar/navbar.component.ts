@@ -1,6 +1,5 @@
 import { AuthService } from './../../core/services/auth/auth.service';
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor(private authService: AuthService, private location: Location) {}
+  constructor(private authService: AuthService) {}
 
 
 

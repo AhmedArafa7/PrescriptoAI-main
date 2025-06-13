@@ -1,7 +1,7 @@
 <div class="min-h-full bg-white dark:bg-gray-900">
 
   <div class="p-4">
-    <h1 class="text-2xl font-semibold mb-4">Settings</h1>
+    <h1 class="text-2xl text-white font-semibold mb-4">Settings</h1>
 
     <!-- Dark Mode -->
     <div class="flex justify-between items-center bg-purple-50 dark:bg-purple-100 p-4 rounded-lg mb-4">
@@ -11,8 +11,14 @@
         </div>
         <div class="text-sm text-gray-600">Toggle app appearance</div>
       </div>
+
       <label class="inline-flex relative items-center cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer" (change)="toggleTheme()">
+        <input 
+          type="checkbox" 
+          class="sr-only peer" 
+          [checked]="isDarkMode()" 
+          (change)="toggleTheme()">
+          
         <div
           class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 dark:bg-gray-700 peer-checked:bg-teal-600">
         </div>

@@ -1,9 +1,6 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common'; // Location لزر العودة
-import { HttpClient } from '@angular/common/http'; // إذا كنت تخطط لإجراء طلبات HTTP
 import { ToastrService } from 'ngx-toastr'; // لإظهار الإشعارات
 
 @Component({
@@ -24,9 +21,8 @@ export class CheckComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private location: Location, // لاستخدام زر العودة
-    // private http: HttpClient, // قم بإزالة التعليق إذا كنت ستستخدم HttpClient
-    private toastr: ToastrService // قم بإزالة التعليق إذا كنت ستستخدم ToastrService
+    private location: Location, 
+    private toastr: ToastrService 
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +43,6 @@ export class CheckComponent implements OnInit {
     }
     const imageUrl = this.imageForm.get('imageUrl')?.value;
     console.log('Testing Image URL:', imageUrl);
-    // هنا ستقوم بإرسال طلب HTTP إلى الـ API باستخدام imageUrl
-    // مثال: this.http.post(this.apiEndpoint, { url: imageUrl, api_key: this.apiKey }).subscribe(...)
     this.toastr.info('Sending URL for testing...');
   }
 
@@ -74,9 +68,6 @@ export class CheckComponent implements OnInit {
       return;
     }
     console.log('Testing Image File:', this.selectedFile.name);
-    // هنا ستقوم بإرسال طلب HTTP لرفع الملف إلى الـ API
-    // مثال: const formData = new FormData(); formData.append('image', this.selectedFile);
-    // this.http.post(this.apiEndpoint, formData, { params: { api_key: this.apiKey } }).subscribe(...)
     this.toastr.info('Sending file for testing...');
   }
 }

@@ -24,6 +24,8 @@ export class ThemeService {
   }
 
   loadTheme(): void {
+    if (!this.isBrowser) return;
+
     const savedTheme = localStorage.getItem(this.themeKey);
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -32,7 +34,7 @@ export class ThemeService {
     }
   }
 
-  getCurrentTheme(): boolean {
+  isDark(): boolean {
     if (!this.isBrowser) return false;
     return document.documentElement.classList.contains('dark');
   }
